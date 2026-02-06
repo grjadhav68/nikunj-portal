@@ -2,7 +2,15 @@ import React, { useState, useEffect } from 'react';
 import './Dashboard.css';
 
 // API Configuration for deployment
-const API_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
+const getAPIUrl = () => {
+  // Use environment variable if available, otherwise use localhost for dev
+  if (process.env.REACT_APP_BACKEND_URL) {
+    return process.env.REACT_APP_BACKEND_URL;
+  }
+  return 'http://localhost:5000';
+};
+
+const API_URL = getAPIUrl();
 
 // DEMO DATA
 const DEMO_EMPLOYEES = [
